@@ -1,0 +1,9 @@
+[KShortcutsDialog Settings]
+Dialog Size=600,480
+
+[KDE]
+TerminalApplication=kitty
+
+[General]
+TerminalApplication=kitty
+TerminalService=kitty.desktop
