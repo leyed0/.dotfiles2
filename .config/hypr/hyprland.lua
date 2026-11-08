@@ -71,6 +71,9 @@ local lockscreen = "hyprlock"
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("EDITOR", "nano")
+hl.env("VISUAL", "nano")
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 
 
 -----------------------
@@ -120,7 +123,7 @@ hl.config({
 
     decoration = {
         rounding       = 2,
-        rounding_power = 20,
+        rounding_power = 10,
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
@@ -319,6 +322,21 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lockscreen))
+
+-- Clipboard history (cliphist + fuzzel)
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("cliphist list | fuzzel --dmenu --placeholder 'Clipboard' | cliphist decode | wl-copy"))
+
+-- Color picker (copies hex value to clipboard)
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprpicker -a"))
+
+-- Night light toggle (4000K)
+hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("pkill hyprsunset || setsid -f hyprsunset -t 4000"))
+
+-- Screen recording toggle
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("pkill wf-recorder || wf-recorder -f \"$HOME/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4\""))
+
+-- Region screenshot with annotation (satty)
+hl.bind("PRINT", hl.dsp.exec_cmd("mkdir -p \"$HOME/Pictures/Screenshots\" && grim -g \"$(slurp)\" - | satty --filename - --save-after-copy --output-filename \"$HOME/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S).png\""))
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----

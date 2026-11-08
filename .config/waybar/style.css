@@ -87,6 +87,7 @@ button:hover {
 #pulseaudio,
 #wireplumber,
 #custom-media,
+#custom-clipboard,
 #tray,
 #mode,
 #idle_inhibitor,
@@ -223,6 +224,17 @@ label:focus {
 
 #custom-media.custom-vlc {
     background-color: #ffa000;
+}
+
+#custom-clipboard {
+    background-color: #5e81ac;
+    color: #eceff4;
+    min-width: 34px;
+}
+
+#custom-clipboard.empty {
+    background-color: #4c566a;
+    color: #d8dee9;
 }
 
 #custom-power {

@@ -19,11 +19,10 @@
         "wireplumber",
         "network",
         "bluetooth",
-        "tlp",
         // "power-profiles-daemon",
         "battery",
-        "bat2",
         "clock",
+        "custom/clipboard",
         "tray",
         "custom/power"
     ],
@@ -203,6 +202,15 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/clipboard": {
+        "format": "󰅌 {text}",
+        "tooltip": true,
+        "tooltip-format": "Clipboard history ({text} items)\nLeft click: pick item\nRight click: clear history",
+        "exec": "cliphist list | wc -l",
+        "interval": 5,
+        "on-click": "cliphist list | fuzzel --dmenu --placeholder 'Clipboard' | cliphist decode | wl-copy",
+        "on-click-right": "cliphist wipe && wl-copy --clear"
     },
     "custom/power": {
         "format" : "⏻ ",
